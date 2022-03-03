@@ -25,7 +25,7 @@ public class MyService extends Service {
     private final int MIN=0;
     private final int MAX=100;
 
-    public static final int GET_COUNT=0;
+    public static final int GET_RANDOM_NUMBER_TAG = 0;
 
     private Messenger randomNumberMessenger = new Messenger(new RandomNumberRequestHandler());
 
@@ -88,8 +88,8 @@ public class MyService extends Service {
         @Override
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
-                case GET_COUNT :
-                    Message messageSendRandomNumber = Message.obtain(null, GET_COUNT);
+                case GET_RANDOM_NUMBER_TAG:
+                    Message messageSendRandomNumber = Message.obtain(null, GET_RANDOM_NUMBER_TAG);
                     messageSendRandomNumber.arg1 = getRandomNumber();
                     try {
                         msg.replyTo.send(messageSendRandomNumber);
