@@ -32,7 +32,13 @@ public class MyService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return randomNumberMessenger.getBinder();
+        if (intent.getPackage().equals("com.example.ipcclient")) {
+            Toast.makeText(this, "bounded for valid package", Toast.LENGTH_SHORT).show();
+            return randomNumberMessenger.getBinder();
+        } else {
+            Toast.makeText(this, "invalid package", Toast.LENGTH_SHORT).show();
+            return null;
+        }
     }
 
     @Override
